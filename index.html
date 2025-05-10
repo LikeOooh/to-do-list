@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" async></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class=" todos-block-header">
+      <h1>To-Do List</h1>
+    </div>
+
+    <form class="form" action="" id="form">
+      <div class="row">
+        <div class="todo"><input class="todo-input" type="text" name="title" id="todo-input"
+            placeholder="Добавить задачу">
+          <button id="addTodo">Добавить</button>
+        </div>
+      </div>
+    </form>
+
+    <div id="todos" class="todos"></div>
+
+    <div class="buttons">
+      <label for="user-id">User ID: </label>
+      <input class="user-id-input" type="text" name="user-id" id="user-id" placeholder="-">
+      <button id="loadTodos">Загрузить</button>
+      <button id="allTodos">Все задачи</button>
+      <button id="completedTodos">Выполненные</button>
+      <button id="uncompletedTodos">Невыполненные</button>
+    </div>
+  </div>
+</body>
+
+</html>
