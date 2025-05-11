@@ -49,7 +49,7 @@ getTodos();
 
 //Загрузка списка задач с ресурса по кнопке
 document.getElementById('loadTodos').addEventListener('click', () => {
-    
+
     document.getElementById('todos').innerHTML = 'Загружаем данные...';
     curUserId = parseInt(document.getElementById('user-id').value);
     if (curUserId > 10) {
@@ -61,13 +61,13 @@ document.getElementById('loadTodos').addEventListener('click', () => {
     //Загружаем задачи по API в localStorage    
     localTodos = [];
     localStorage.clear();
-    
+
     let source = 'https://jsonplaceholder.typicode.com/todos';
     if (curUserId) {
         if (curUserId)
             source = 'https://jsonplaceholder.typicode.com/todos?userId=' + curUserId;
     }
-    
+
     fetch(source)
         .then(response => response.json())
         .then(todos => {
@@ -95,7 +95,7 @@ document.getElementById('allTodos').addEventListener('click', () => {
     let allTodos = document.getElementsByClassName('todo');
     for (const item of allTodos) {
         item.classList.remove('hide');
-    }    
+    }
 })
 
 //Выполненные задачи из списка
@@ -103,10 +103,10 @@ document.getElementById('completedTodos').addEventListener('click', () => {
     let allTodos = document.getElementsByClassName('todo');
     for (const item of allTodos) {
         if (item.classList.contains('completed'))
-        item.classList.remove('hide');    
+            item.classList.remove('hide');
         if (!item.classList.contains('completed'))
-        item.classList.add('hide');
-    }   
+            item.classList.add('hide');
+    }
 })
 
 //Невыполненные задачи из списка
@@ -114,10 +114,10 @@ document.getElementById('uncompletedTodos').addEventListener('click', () => {
     let allTodos = document.getElementsByClassName('todo');
     for (const item of allTodos) {
         if (item.classList.contains('completed'))
-        item.classList.add('hide');    
+            item.classList.add('hide');
         if (!item.classList.contains('completed'))
-        item.classList.remove('hide');
-    }    
+            item.classList.remove('hide');
+    }
 })
 
 
@@ -151,9 +151,11 @@ document.getElementById('todos').addEventListener('click', (event) => {
     if (event.target.tagName === 'IMG') {
         let curId = event.target.id.split("img-")[1];
         let min = prompt(`Установить напоминание (минут)`);
-        setTimeout(() => {
-            alert(localTodos[curId].title);
-        }, min * 1000 * 60);
+        if (!min == 0) {
+            setTimeout(() => {
+                alert(localTodos[curId].title);
+            }, min * 1000 * 60);
+        }
     }
 })
 
