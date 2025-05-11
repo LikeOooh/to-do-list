@@ -64,7 +64,7 @@ h1 {
     gap: 20px;
 }
 
-.todo,
+.todo, .add-todo,
 .user-id-input {
     width: 100%;
     box-sizing: border-box;
@@ -93,6 +93,10 @@ h1 {
     text-decoration: line-through;
     color: var(--clr-light-grey);
 }
+
+.todo.hide,.todo.completed.hide {
+    display: none;
+} 
 
 .buttons {
     display: flex;

@@ -26,7 +26,7 @@ function clearInput() {
 }
 
 //Выборка задач
-function getTodos(isCompleted) {
+function getTodos() {
     let n = 0;
     const todoList = document.getElementById('todos');
     todoList.innerHTML = '';
@@ -38,18 +38,8 @@ function getTodos(isCompleted) {
                 : localTodos = JSON.parse(localStorage.getItem('localTodos'));
         }
     }
-    //Если текущий список не пуст, загружаем текущий список задач
-    let filteredLocalTodos = [];
-    if (isCompleted) {
-        if (isCompleted == 'completed')
-            filteredLocalTodos = localTodos.filter(item => item.completed == true);
 
-        else if (isCompleted == 'uncompleted')
-            filteredLocalTodos = localTodos.filter(item => item.completed == false);
-    }
-    else filteredLocalTodos = localTodos;
-
-    filteredLocalTodos.forEach((item) => {
+    localTodos.forEach((item) => {
         todoItem = `<div ${item.completed === true ? 'class="todo completed"' : 'class="todo"'} id="todo-${n}"><input class="todo-checkbox" ${item.completed === true ? `checked` : `unchecked`} type="checkbox" id="checkbox-${n}"><span>${item.title}   </span><div class="reminder"}><img src="./remind.png" alt="bell" id="img-${n}"></div><button class="delTodo" id="button-${n}">Удалить</button></div>`;
         todoList.innerHTML = todoItem + todoList.innerHTML;
         n++;
@@ -102,17 +92,32 @@ document.getElementById('loadTodos').addEventListener('click', () => {
 
 //Все задачи списка
 document.getElementById('allTodos').addEventListener('click', () => {
-    getTodos(false);
+    let allTodos = document.getElementsByClassName('todo');
+    for (const item of allTodos) {
+        item.classList.remove('hide');
+    }    
 })
 
 //Выполненные задачи из списка
 document.getElementById('completedTodos').addEventListener('click', () => {
-    getTodos('completed');
+    let allTodos = document.getElementsByClassName('todo');
+    for (const item of allTodos) {
+        if (item.classList.contains('completed'))
+        item.classList.remove('hide');    
+        if (!item.classList.contains('completed'))
+        item.classList.add('hide');
+    }   
 })
 
 //Невыполненные задачи из списка
 document.getElementById('uncompletedTodos').addEventListener('click', () => {
-    getTodos('uncompleted');
+    let allTodos = document.getElementsByClassName('todo');
+    for (const item of allTodos) {
+        if (item.classList.contains('completed'))
+        item.classList.add('hide');    
+        if (!item.classList.contains('completed'))
+        item.classList.remove('hide');
+    }    
 })
 
 
